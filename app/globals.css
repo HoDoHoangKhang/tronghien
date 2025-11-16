@@ -127,3 +127,43 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom Scrollbar Styles */
+@layer base {
+  /* Webkit browsers (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Hide scrollbar buttons (arrows) */
+  ::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8B7355 0%, #D4AF37 50%, #8B7355 100%);
+    border-radius: 10px;
+    border: 2px solid #0a0a0a;
+    transition: all 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  }
+
+  /* Firefox */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #D4AF37 #0a0a0a;
+    scroll-behavior: smooth;
+  }
+}

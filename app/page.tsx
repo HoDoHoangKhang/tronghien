@@ -42,7 +42,8 @@ const chambers = [
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/eden-WfyZ03blK4qFB6RLB7mJeDcaQ7YbIQ.png",
     thumbnailImage: "/images/design-mode/3.jpg%25201(1).png",
     description: [
-      "The Garden of Eden showcases my endeavors to restore the balance between humans' benefits and environmental health. In this space, creations born to solve one of the age-old problems, climate change, and innovation breathe with the rhythm of nature.Here, I am the Verdant Warden. More than just the garden's caretakers Adam and Eva, I strived to be the guardian of equilibrium, who studies not only how nature sustains us but how we sustain it in turn.",
+      "The Garden of Eden showcases my endeavors to restore the balance between humans' benefits and environmental health. In this space, creations born to solve one of the age-old problems, climate change, and innovation breathe with the rhythm of nature.",
+      "Here, I am the Verdant Warden. More than just the garden's caretakers Adam and Eva, I strived to be the guardian of equilibrium, who studies not only how nature sustains us but how we sustain it in turn.",
     ],
     // </CHANGE>
     galleryImages: [
@@ -87,7 +88,8 @@ const chambers = [
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chapter-YuFEyABPKxsyNGSFKkn4BIGkkuHuTD.png",
     thumbnailImage: "/images/design-mode/s3(1).png",
     description: [
-      "The Chapter House is a hall of collaboration, shared purpose, heard voices, and strengthened sense of belonging. Its mission is simple but bold – ensure community's well-being.Here, I am the Welfare Steward, a custodian of people. This platform enables me to weave connection into action, to turn collective hopes and efforts into organized impact.",
+      "The Chapter House is a hall of collaboration, shared purpose, heard voices, and strengthened sense of belonging. Its mission is simple but bold – ensure community's well-being.",
+      "Here, I am the Welfare Steward, a custodian of people. This platform enables me to weave connection into action, to turn collective hopes and efforts into organized impact.",
     ],
     // </CHANGE>
     galleryImages: [
@@ -119,6 +121,96 @@ export default function LumberaHavenPage() {
   const [kokiLightboxOpen, setKokiLightboxOpen] = useState(false)
   const [kokiLightboxIndex, setKokiLightboxIndex] = useState(0)
   // </CHANGE>
+
+  const [certCarouselIndex, setCertCarouselIndex] = useState(0)
+  const [certTouchStart, setCertTouchStart] = useState(0)
+  const [certTouchEnd, setCertTouchEnd] = useState(0)
+  const [certLightboxOpen, setCertLightboxOpen] = useState(false)
+  const [certLightboxIndex, setCertLightboxIndex] = useState(0)
+  const certImages = [
+    "/images/cert-2.png",
+    "/images/cert-3.png",
+    "/images/cert-4.png",
+    "/images/cert-5.png",
+    "/images/cert-6.png",
+    "/images/cert-7.png",
+    "/images/cert-8.png",
+  ]
+
+  // With 7 images and showing 4.5, we can scroll from 0 to 3 (showing images 0-6)
+  const maxCertIndex = Math.max(0, certImages.length - 4)
+
+  const handleCertSwipe = () => {
+    if (certTouchEnd < certTouchStart - 50) {
+      // Swipe left - next (infinite)
+      setCertCarouselIndex((prev) => {
+        const next = prev + 1
+        return next > maxCertIndex ? 0 : next
+      })
+    }
+    if (certTouchEnd > certTouchStart + 50) {
+      // Swipe right - previous (infinite)
+      setCertCarouselIndex((prev) => {
+        const next = prev - 1
+        return next < 0 ? maxCertIndex : next
+      })
+    }
+  }
+
+  const nextCertSlide = () => {
+    setCertCarouselIndex((prev) => {
+      const next = prev + 1
+      return next > maxCertIndex ? 0 : next
+    })
+  }
+
+  const prevCertSlide = () => {
+    setCertCarouselIndex((prev) => {
+      const next = prev - 1
+      return next < 0 ? maxCertIndex : next
+    })
+  }
+
+  const openCertLightbox = (index: number) => {
+    // Calculate actual index from duplicate array
+    const actualIndex = index % certImages.length
+    setCertLightboxIndex(actualIndex)
+    setCertLightboxOpen(true)
+  }
+
+  const nextCertLightboxImage = () => {
+    setCertLightboxIndex((prev) => (prev + 1) % certImages.length)
+  }
+
+  const prevCertLightboxImage = () => {
+    setCertLightboxIndex((prev) => (prev - 1 + certImages.length) % certImages.length)
+  }
+
+  const kokiGalleryImages = [
+    "/images/design-mode/%5B2%5D%20Concert%201.png.jpeg",
+    "/images/design-mode/%5B2%5D%20Concert%202.png.jpeg",
+    "/images/design-mode/%5B2%5D%20Concert%203.jpg",
+    "/images/design-mode/%5B3%5D%20Charity%201.jpg",
+    "/images/design-mode/%5B1%5D%20%E1%BA%A2nh%20gi%E1%BB%9Bi%20thi%E1%BB%87u%20ho%E1%BA%A1t%20%C4%91%E1%BB%99ng_%20Intro%201%281%29.jpg",
+    "/images/design-mode/%5B1%5D%20%E1%BA%A2nh%20gi%E1%BB%9Bi%20thi%E1%BB%87u%20ho%E1%BA%A1t%20%C4%91%E1%BB%99ng_%20Intro%201.jpg",
+    "/images/design-mode/%5B3%5D%20Charity%203.jpg",
+    "/images/design-mode/v0_image-2.png",
+    "/images/design-mode/%5B3%5D%20Charity%204.jpg",
+    "/images/design-mode/%5B3%5D%20Charity%205.jpg",
+  ]
+
+  const openKokiLightbox = (index: number) => {
+    setKokiLightboxIndex(index)
+    setKokiLightboxOpen(true)
+  }
+
+  const nextKokiLightboxImage = () => {
+    setKokiLightboxIndex((prev) => (prev + 1) % kokiGalleryImages.length)
+  }
+
+  const prevKokiLightboxImage = () => {
+    setKokiLightboxIndex((prev) => (prev - 1 + kokiGalleryImages.length) % kokiGalleryImages.length)
+  }
 
   const [signatureOfClayIndex, setSignatureOfClayIndex] = useState(0)
   // </CHANGE>
@@ -273,6 +365,73 @@ export default function LumberaHavenPage() {
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-YxMbSUjz9pT2HD7TNUA8cayMFFXklo.jpg",
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7-qnKd88QVEq9PNuHqbietj5cROQhkfy.jpg",
   ]
+
+  // Carousel states for YES galleries - horizontal carousel like certificates
+  const [dongThapCarouselIndex, setDongThapCarouselIndex] = useState(0)
+  const [tutoringCarouselIndex, setTutoringCarouselIndex] = useState(0)
+  const [nursingHomeCarouselIndex, setNursingHomeCarouselIndex] = useState(0)
+  const [workshopsCarouselIndex, setWorkshopsCarouselIndex] = useState(0)
+
+  // Workshops images from Volunteering & Workshops folder
+  const workshopsGalleryImages = [
+    "/images/Volunteering & Workshops/1.png",
+    "/images/Volunteering & Workshops/2.jpg",
+    "/images/Volunteering & Workshops/3.jpg",
+    "/images/Volunteering & Workshops/4.jpg",
+    "/images/Volunteering & Workshops/5.jpg",
+  ]
+
+  const nextDongThapSlide = () => {
+    setDongThapCarouselIndex((prev) => {
+      const maxIndex = Math.max(0, dongThapGalleryImages.length - 3)
+      return prev >= maxIndex ? 0 : prev + 1
+    })
+  }
+  const prevDongThapSlide = () => {
+    setDongThapCarouselIndex((prev) => {
+      const maxIndex = Math.max(0, dongThapGalleryImages.length - 3)
+      return prev <= 0 ? maxIndex : prev - 1
+    })
+  }
+
+  const nextTutoringSlide = () => {
+    setTutoringCarouselIndex((prev) => {
+      const maxIndex = Math.max(0, tutoringGalleryImages.length - 3)
+      return prev >= maxIndex ? 0 : prev + 1
+    })
+  }
+  const prevTutoringSlide = () => {
+    setTutoringCarouselIndex((prev) => {
+      const maxIndex = Math.max(0, tutoringGalleryImages.length - 3)
+      return prev <= 0 ? maxIndex : prev - 1
+    })
+  }
+
+  const nextNursingHomeSlide = () => {
+    setNursingHomeCarouselIndex((prev) => {
+      const maxIndex = Math.max(0, nursingHomeGalleryImages.length - 3)
+      return prev >= maxIndex ? 0 : prev + 1
+    })
+  }
+  const prevNursingHomeSlide = () => {
+    setNursingHomeCarouselIndex((prev) => {
+      const maxIndex = Math.max(0, nursingHomeGalleryImages.length - 3)
+      return prev <= 0 ? maxIndex : prev - 1
+    })
+  }
+
+  const nextWorkshopsSlide = () => {
+    setWorkshopsCarouselIndex((prev) => {
+      const maxIndex = Math.max(0, workshopsGalleryImages.length - 3)
+      return prev >= maxIndex ? 0 : prev + 1
+    })
+  }
+  const prevWorkshopsSlide = () => {
+    setWorkshopsCarouselIndex((prev) => {
+      const maxIndex = Math.max(0, workshopsGalleryImages.length - 3)
+      return prev <= 0 ? maxIndex : prev - 1
+    })
+  }
   // </CHANGE>
   // </CHANGE>
 
@@ -346,7 +505,7 @@ export default function LumberaHavenPage() {
     <div className="min-h-screen bg-[#0a0a0a] text-white scroll-smooth">
       {/* FixedNavbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-sm border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-8 py-2 flex justify-end gap-6">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 py-2 flex justify-end gap-6">
           <Link
             href="#hero"
             className="px-6 py-2 text-white hover:text-[#D4AF37] transition-all duration-300 font-cinzel text-sm tracking-wider"
@@ -379,14 +538,14 @@ export default function LumberaHavenPage() {
         <div className="absolute bottom-32 left-8 max-w-md z-10 bg-black/80 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border-4 border-[#8B7355]">
           <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-xl m-1"></div>
           <div className="relative z-10">
-            <h1 className="font-semibold mb-4 text-center font-cinzel text-white tracking-wider">
-              <span className="block text-xl text-[#D4AF37]">- WELCOME TO -</span>
-              <span className="block text-4xl my-2">LUMINARA HAVEN</span>
+            <h1 className="font-semibold mb-6 text-center font-cinzel text-white tracking-wider">
+              <span className="block text-lg md:text-xl text-[#D4AF37]">- WELCOME TO -</span>
+              <span className="block text-4xl md:text-5xl my-2">LUMINARA HAVEN</span>
             </h1>
-            <p className="leading-relaxed text-gray-200 mb-3 text-base font-light font-[family-name:var(--font-utm-times)]">
-              Hi! Test I am Nguyễn Đình Trọng Hiến and this platform is the journey of my growth, exploration, and hope.
+            <p className="leading-relaxed text-gray-200 mb-4 text-base font-light font-[family-name:var(--font-utm-times)] text-justify">
+              Hi! I am Nguyễn Đình Trọng Hiến and this platform is the journey of my growth, exploration, and hope.
             </p>
-            <p className="leading-relaxed text-gray-200 text-base font-light font-[family-name:var(--font-utm-times)]">
+            <p className="leading-relaxed text-gray-200 text-base font-light font-[family-name:var(--font-utm-times)] text-justify">
               I believe that my entire story could be retold perfectly as an &quot;imagination&quot; castle titled
               Luminara Haven. The &quot;castle&quot; itself has gone through many life-changing hallmarks that I want to
               share.
@@ -396,14 +555,14 @@ export default function LumberaHavenPage() {
       </section>
 
       {/* Quote Section */}
-      <section className="py-24 px-8 max-w-5xl mx-auto text-center">
+      <section className="py-16 md:py-24 px-6 md:px-8 max-w-4xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-cinzel font-light text-white leading-tight text-balance mb-6">
           My castle holds five &quot;chambers&quot;, each revealing a different facet of myself:
         </h2>
       </section>
 
       {/* Content Sections - Alternating Layout */}
-      <div className="max-w-7xl mx-auto px-8 space-y-32 pb-32">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-16 md:space-y-24 pb-16 md:pb-32">
         {/* The Sanctum */}
         <div className="grid md:grid-cols-2 gap-8 items-center justify-items-center group">
           <div className="relative max-w-[320px] max-h-[60vh] transition-all duration-300 hover:scale-105 cursor-pointer">
@@ -418,13 +577,11 @@ export default function LumberaHavenPage() {
               />
             </div>
           </div>
-          <div className="max-w-md relative">
-            <div className="absolute -top-8 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <p className="text-[#D4AF37] font-cinzel font-semibold tracking-widest uppercase text-4xl ml-[-74px] mt-[-27px]">
-                ABOUT ME
-              </p>
-            </div>
-            <p className="text-lg leading-relaxed text-white font-cinzel ml-[-75px] mr-[38px]">
+          <div className="max-w-md">
+            <p className="text-[#D4AF37] font-cinzel font-semibold tracking-widest uppercase text-xl md:text-2xl mb-4">
+              ABOUT ME
+            </p>
+            <p className="text-base leading-relaxed text-white font-cinzel text-justify">
               In The Sanctum, I define myself and my purpose as the Castellan.
             </p>
           </div>
@@ -444,13 +601,11 @@ export default function LumberaHavenPage() {
               />
             </div>
           </div>
-          <div className="md:order-1 max-w-md relative">
-            <div className="absolute -top-8 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <p className="text-[#D4AF37] font-cinzel font-semibold tracking-widest uppercase text-4xl mr-[-111px] mt-[-27px]">
-                RESEARCH EXPERIENCES
-              </p>
-            </div>
-            <p className="text-lg leading-relaxed text-white font-cinzel ml-92px mr-[-111px] ml-[49px]">
+          <div className="md:order-1 max-w-md">
+            <p className="text-[#D4AF37] font-cinzel font-semibold tracking-widest uppercase text-xl md:text-2xl mb-4">
+              RESEARCH EXPERIENCES
+            </p>
+            <p className="text-base leading-relaxed text-white font-cinzel text-justify">
               In the Crucible Forge, I experiment with innovation and pursue real-life knowledge as the Alchemist.
             </p>
           </div>
@@ -470,13 +625,11 @@ export default function LumberaHavenPage() {
               />
             </div>
           </div>
-          <div className="max-w-md relative">
-            <div className="absolute -top-8 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <p className="text-[#D4AF37] font-cinzel font-semibold tracking-widest uppercase ml-[-87px] px-0 mr-[-100px] text-4xl mb-0 mt-[-55px]">
-                INTERNSHIP &amp; OTHER ACTIVITIES
-              </p>
-            </div>
-            <p className="text-lg leading-relaxed text-white font-cinzel ml-[-87px] mr-[124px] text-justify">
+          <div className="max-w-md">
+            <p className="text-[#D4AF37] font-cinzel font-semibold tracking-widest uppercase text-xl md:text-2xl mb-4">
+              INTERNSHIP &amp; OTHER ACTIVITIES
+            </p>
+            <p className="text-base leading-relaxed text-white font-cinzel text-justify">
               {
                 "In The Garden of Eden, I value environmental activism and preserve the harmony between humanity and nature as the Verdant Warden.\n"
               }
@@ -498,14 +651,12 @@ export default function LumberaHavenPage() {
               />
             </div>
           </div>
-          <div className="md:order-1 max-w-md relative">
-            <div className="absolute -top-8 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <p className="text-[#D4AF37] font-cinzel font-semibold tracking-widest uppercase text-4xl mt-[-27px] text-right mr-[-105px]">
-                CULTURAL VALUES
-              </p>
-            </div>
-            <p className="text-lg leading-relaxed text-white font-cinzel ml-[154px] mr-[-118px]">
-              In The Hearth, I celebrate my hometown’s heritage and my cultural identity as the Lore-tempered
+          <div className="md:order-1 max-w-md">
+            <p className="text-[#D4AF37] font-cinzel font-semibold tracking-widest uppercase text-xl md:text-2xl mb-4">
+              CULTURAL VALUES
+            </p>
+            <p className="text-base leading-relaxed text-white font-cinzel text-justify">
+              In The Hearth, I celebrate my hometown's heritage and my cultural identity as the Lore-tempered
               Storyteller.
             </p>
           </div>
@@ -525,30 +676,28 @@ export default function LumberaHavenPage() {
               />
             </div>
           </div>
-          <div className="max-w-md relative">
-            <div className="absolute -top-8 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <p className="text-[#D4AF37] font-cinzel font-semibold tracking-widest uppercase mt-[-27px] text-4xl ml-[-83px] mr-[-30px]">
-                LEADERSHIP EXPERIENCE
-              </p>
-            </div>
-            <p className="text-lg leading-relaxed text-white font-cinzel ml-[-85px]">
-              In The Chapter House, I serve local citizens and engage in community as the Welfare Steward.
+          <div className="max-w-md">
+            <p className="text-[#D4AF37] font-cinzel font-semibold tracking-widest uppercase text-xl md:text-2xl mb-4">
+              LEADERSHIP EXPERIENCE
+            </p>
+            <p className="text-base leading-relaxed text-white font-cinzel text-justify">
+              In The Chapter House, I serve local citizens and engage with the community as the Welfare Steward.
             </p>
           </div>
         </div>
       </div>
 
       {/* Closing Section */}
-      <section className="py-24 px-8 max-w-4xl mx-auto text-center">
-        <p className="text-sm leading-relaxed text-gray-300 mb-2 font-cinzel">
+      <section className="py-16 md:py-24 px-6 md:px-8 max-w-4xl mx-auto text-center">
+        <p className="text-base leading-relaxed text-gray-300 mb-4 font-cinzel text-justify">
           Together, these scenes form Luminara Haven. More than a castle, it is the living embodiment of my curiosity,
           empathy, and pursuit of light.
         </p>
-        <p className="text-xl font-semibold font-cinzel">Let's Explore!</p>
+        <p className="text-lg md:text-xl font-semibold font-cinzel">Let's Explore!</p>
       </section>
 
       {/* Staggered Columns Section */}
-      <section id="journey" className="pb-32 px-8 scroll-mt-16">
+      <section id="journey" className="pb-16 md:pb-32 px-6 md:px-8 scroll-mt-16">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-center items-end gap-6">
             {/* Shortest - Left outer */}
@@ -568,8 +717,8 @@ export default function LumberaHavenPage() {
                 {/* </CHANGE> */}
                 <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-4 rounded-sm m-1">
                   <div className="text-center">
-                    <h3 className="text-[#D4AF37] font-cinzel font-semibold text-lg mb-2 tracking-wide">The Hearth</h3>
-                    <p className="text-white text-xs font-cinzel leading-relaxed">Cultural Values </p>
+                    <h3 className="text-[#D4AF37] font-cinzel font-semibold text-base md:text-lg mb-2 tracking-wide">The Hearth</h3>
+                    <p className="text-white text-sm font-cinzel leading-relaxed">Cultural Values </p>
                   </div>
                 </div>
               </div>
@@ -591,10 +740,10 @@ export default function LumberaHavenPage() {
                 {/* </CHANGE> */}
                 <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-4 rounded-sm m-1">
                   <div className="text-center">
-                    <h3 className="text-[#D4AF37] font-cinzel font-semibold text-lg mb-2 tracking-wide">
+                    <h3 className="text-[#D4AF37] font-cinzel font-semibold text-base md:text-lg mb-2 tracking-wide">
                       The Garden of Eden
                     </h3>
-                    <p className="text-white text-xs font-cinzel leading-relaxed">Internship &amp; Other Activities </p>
+                    <p className="text-white text-sm font-cinzel leading-relaxed">Internship &amp; Other Activities </p>
                   </div>
                 </div>
               </div>
@@ -616,8 +765,8 @@ export default function LumberaHavenPage() {
                 {/* </CHANGE> */}
                 <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-4 rounded-sm m-1">
                   <div className="text-center">
-                    <h3 className="text-[#D4AF37] font-cinzel font-semibold text-lg mb-2 tracking-wide">The Sanctum</h3>
-                    <p className="text-white text-xs font-cinzel leading-relaxed">About Me</p>
+                    <h3 className="text-[#D4AF37] font-cinzel font-semibold text-base md:text-lg mb-2 tracking-wide">The Sanctum</h3>
+                    <p className="text-white text-sm font-cinzel leading-relaxed">About Me</p>
                   </div>
                 </div>
               </div>
@@ -639,10 +788,10 @@ export default function LumberaHavenPage() {
                 {/* </CHANGE> */}
                 <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-4 rounded-sm m-1">
                   <div className="text-center">
-                    <h3 className="text-[#D4AF37] font-cinzel font-semibold text-lg mb-2 tracking-wide">
+                    <h3 className="text-[#D4AF37] font-cinzel font-semibold text-base md:text-lg mb-2 tracking-wide">
                       The Crucible Forge
                     </h3>
-                    <p className="text-white text-xs font-cinzel leading-relaxed">Research Experiences </p>
+                    <p className="text-white text-sm font-cinzel leading-relaxed">Research Experiences </p>
                   </div>
                 </div>
               </div>
@@ -664,10 +813,10 @@ export default function LumberaHavenPage() {
                 {/* </CHANGE> */}
                 <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-4 rounded-sm m-1">
                   <div className="text-center">
-                    <h3 className="text-[#D4AF37] font-cinzel font-semibold text-lg mb-2 tracking-wide">
+                    <h3 className="text-[#D4AF37] font-cinzel font-semibold text-base md:text-lg mb-2 tracking-wide">
                       The Chapter House
                     </h3>
-                    <p className="text-white text-xs font-cinzel leading-relaxed">Leadership Experiences</p>
+                    <p className="text-white text-sm font-cinzel leading-relaxed">Leadership Experiences</p>
                   </div>
                 </div>
               </div>
@@ -688,17 +837,17 @@ export default function LumberaHavenPage() {
               <div className="relative z-10 p-16 h-full overflow-y-auto">
                 {chambers[selectedChamber].galleryImages &&
                   chambers[selectedChamber].galleryImages.length > 0 &&
-                  selectedChamber !== 3 && <div className="mb-12 relative"></div>}
+                  selectedChamber !== 3 && <div className="mb-8 relative"></div>}
                 {/* </CHANGE> */}
 
-                <h2 className="text-6xl md:text-7xl font-cinzel font-light text-white mb-12 uppercase tracking-wider">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-cinzel font-light text-white mb-8 uppercase tracking-wider">
                   {chambers[selectedChamber].title}
                 </h2>
 
                 {/* Description */}
-                <div className="space-y-4 max-w-2xl mb-12">
+                <div className="space-y-4 max-w-2xl mb-8">
                   {chambers[selectedChamber].description.map((paragraph, idx) => (
-                    <p key={idx} className="text-sm leading-relaxed text-gray-200 font-cinzel text-justify">
+                    <p key={idx} className="text-base leading-relaxed text-gray-200 font-cinzel text-justify">
                       {paragraph}
                     </p>
                   ))}
@@ -708,7 +857,7 @@ export default function LumberaHavenPage() {
                   <div className="max-w-2xl space-y-8">
                     {/* Punch Line Quote */}
                     <div className="my-8 border-l-4 border-[#D4AF37] pl-6 py-2">
-                      <p className="text-lg leading-relaxed text-gray-200 font-cinzel italic">
+                      <p className="text-base md:text-lg leading-relaxed text-gray-200 font-cinzel italic">
                         "Science is not just about finding answers—it's about asking the right questions and daring to
                         explore the unknown."
                       </p>
@@ -716,7 +865,7 @@ export default function LumberaHavenPage() {
 
                     {/* House of Experiment Section with Gallery */}
                     <div>
-                      <div className="flex items-center gap-3 mb-4">
+                      <div className="flex items-center gap-3 mb-4 flex-wrap">
                         <svg className="w-6 h-6 text-[#D4AF37]" fill="currentColor" viewBox="0 0 20 20">
                           <path
                             fillRule="evenodd"
@@ -724,19 +873,22 @@ export default function LumberaHavenPage() {
                             clipRule="evenodd"
                           />
                         </svg>
-                        <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
+                        <h3 className="text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
                           House of Experiment
                         </h3>
+                        <span className="text-sm text-gray-400 font-cinzel">
+                          May 2021 - Jul 2025 | Role: Founder
+                        </span>
                       </div>
 
-                      <div className="space-y-4 text-sm text-gray-200 font-cinzel ml-9 mb-6">
-                        <p className="leading-relaxed">
+                      <div className="space-y-4 text-base text-gray-200 font-cinzel ml-9 mb-6">
+                        <p className="leading-relaxed text-justify">
                           Driven by a passion for scientific inquiry, I established a personal "lab studio" to tackle
                           local challenges in water quality, agriculture, and waste through 20+ small-scale experiments.
                         </p>
-                        <p className="leading-relaxed my-0 py-[18px]">
+                        <p className="leading-relaxed my-0 pb-[18px] text-justify">
                           {
-                            '\n\nThis evolved into my solo startup "Eco Wine Lab" under my school ACES Program. This project is where I produced and sold homemade wine in a self-designed lab environment. I managed all operations, from creating eco-friendly, waterproof packaging from recycled materials and promoting products to analyzing fermentation processes. The venture successfully sold 80+ wine boxes at local festivals, generating VND 7.5 million to fund 64 free meals for homeless and low-income individuals.'
+                            '\nThis evolved into my solo startup "Eco Wine Lab" under my school ACES Program. This project is where I produced and sold homemade wine in a self-designed lab environment. I managed all operations, from creating eco-friendly, waterproof packaging from recycled materials and promoting products to analyzing fermentation processes. The venture successfully sold 80+ wine boxes at local festivals, generating VND 7.5 million to fund 64 free meals for homeless and low-income individuals.'
                           }
                         </p>
                         <div className="flex flex-wrap gap-4 pt-2">
@@ -767,7 +919,27 @@ export default function LumberaHavenPage() {
                       </div>
 
                       {/* Gallery Carousel */}
-                      <div className="relative w-full mb-6">
+                      <div className="relative w-full mb-20 mt-12">
+                        {/* Navigation Arrows - Outside image container */}
+                        <button
+                          onClick={prevExperimentSlide}
+                          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full -ml-4 z-20 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                          aria-label="Previous slide"
+                        >
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={nextExperimentSlide}
+                          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full mr-4 z-20 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                          aria-label="Next slide"
+                        >
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
+
                         {/* Main Image Container */}
                         <div
                           className="relative w-full aspect-video rounded-lg overflow-hidden border-4 border-[#8B7355] shadow-2xl cursor-pointer"
@@ -795,33 +967,13 @@ export default function LumberaHavenPage() {
                           {/* </CHANGE> */}
                         </div>
 
-                        {/* Navigation Arrows */}
-                        <button
-                          onClick={prevExperimentSlide}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
-                          aria-label="Previous slide"
-                        >
-                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                          </svg>
-                        </button>
-                        <button
-                          onClick={nextExperimentSlide}
-                          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
-                          aria-label="Next slide"
-                        >
-                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </button>
-
-                        {/* Slide Counter */}
-                        <div className="absolute top-4 right-4 z-20 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-cinzel">
+                        {/* Slide Counter - Outside image container */}
+                        <div className="absolute -top-12 right-0 z-20 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-cinzel">
                           {experimentGalleryIndex + 1} / {experimentGalleryImages.length}
                         </div>
 
-                        {/* Dot Indicators */}
-                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                        {/* Dot Indicators - Outside image container */}
+                        <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 z-20 flex gap-2">
                           {experimentGalleryImages.map((_, index) => (
                             <button
                               key={index}
@@ -839,7 +991,7 @@ export default function LumberaHavenPage() {
 
                     {/* Closing Philosophy */}
                     <div className="pb-8 border-t border-white/20 pt-8 mt-8">
-                      <p className="text-sm leading-relaxed text-gray-200 font-cinzel italic">
+                      <p className="text-base leading-relaxed text-gray-200 font-cinzel italic text-justify">
                         "Every work displayed is never truly complete, for each answer initiates new, more compelling
                         questions. For me, the ultimate objective of discoveries has never been the answer but the
                         process of creating, reframing or even contrasting with the basic ground."
@@ -852,7 +1004,7 @@ export default function LumberaHavenPage() {
                   <div className="max-w-2xl space-y-8">
                     {/* Punch Line Quote */}
                     <div className="my-8 border-l-4 border-[#D4AF37] pl-6 py-2">
-                      <p className="text-base italic text-gray-100 font-cinzel leading-relaxed">
+                      <p className="text-base italic text-gray-100 font-cinzel leading-relaxed text-justify">
                         "In nurturing this garden, I have learned that sustainability is about partnership, not just
                         preservation alone."
                       </p>
@@ -868,11 +1020,11 @@ export default function LumberaHavenPage() {
                             clipRule="evenodd"
                           />
                         </svg>
-                        <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
+                        <h3 className="text-xl md:text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
                           Technical Intern at Han Viet
                         </h3>
                       </div>
-                      <div className="space-y-3 text-sm text-gray-200 font-cinzel ml-9">
+                      <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
                         <p className="text-white">
                           <span className="font-semibold">Role:</span> Technical Intern |{" "}
                           <span className="font-semibold">Date:</span> June 2nd - July 27th, 2025
@@ -893,13 +1045,31 @@ export default function LumberaHavenPage() {
                             </svg>
                             Certificate
                           </a>
+                          <span className="inline-block w-8"></span>
+                          <a
+                            href="https://hanviet.com.vn/?page_id=1066&lang=en"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-[#D4AF37] hover:text-[#F4BF37] transition-colors duration-300 font-semibold"
+                          >
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                              <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                            </svg>
+                            Website
+                          </a>
                         </p>
-                        <p className="leading-relaxed">
+                        <p className="leading-relaxed text-justify">
                           Through hands-on observation of industrial filter core and membrane manufacturing, I gained
                           practical insight into multi-layer filtration systems using materials like activated carbon
-                          and polymer membranes. My responsibilities included testing and replacing filter cores,
-                          measuring pressure and flow rates, and evaluating filtration efficiency. I further
-                          strengthened my technical understanding of adsorption, ion exchange, and reverse osmosis (RO)
+                          and polymer membranes.
+                        </p>
+                        <p className="leading-relaxed text-justify">
+                          My responsibilities included testing and replacing filter cores,
+                          measuring pressure and flow rates, and evaluating filtration efficiency.
+                        </p>
+                        <p className="leading-relaxed text-justify">
+                          I further strengthened my technical understanding of adsorption, ion exchange, and reverse osmosis (RO)
                           by collecting performance data and translating technical manuals to enhance both safety
                           protocols and customer comprehension.
                         </p>
@@ -916,11 +1086,11 @@ export default function LumberaHavenPage() {
                             clipRule="evenodd"
                           />
                         </svg>
-                        <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
+                        <h3 className="text-xl md:text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
                           Technical Intern at Anh Quan
                         </h3>
                       </div>
-                      <div className="space-y-3 text-sm text-gray-200 font-cinzel ml-9">
+                      <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
                         <p className="text-white">
                           <span className="font-semibold">Role:</span> Technical Intern |{" "}
                           <span className="font-semibold">Date:</span> June 17th - August 11th, 2024
@@ -942,7 +1112,7 @@ export default function LumberaHavenPage() {
                             Certificate
                           </a>
                         </p>
-                        <p className="leading-relaxed">
+                        <p className="leading-relaxed text-justify">
                           I directly supported engineers in the installation and calibration of water treatment systems,
                           gaining hands-on experience operating industrial pH, ORP, and chlorine sensors. This provided
                           me with practical insight into how engineering provides tangible solutions for environmental
@@ -955,7 +1125,9 @@ export default function LumberaHavenPage() {
                             {anhQuanGalleryImages.map((imageSrc, index) => (
                               <div
                                 key={index}
-                                className="relative w-full aspect-[4/3] rounded-lg overflow-hidden border-4 border-[#8B7355] shadow-2xl cursor-pointer"
+                                className={`relative w-full aspect-[4/3] rounded-lg overflow-hidden border-4 border-[#8B7355] shadow-2xl cursor-pointer ${
+                                  index === 6 ? "col-span-2" : ""
+                                }`}
                                 onClick={() => openAnhQuanLightbox(index)}
                               >
                                 <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
@@ -992,22 +1164,22 @@ export default function LumberaHavenPage() {
 
                     {/* Organizations */}
                     <div className="mx-[-39px]">
-                      <div className="space-y-4 text-sm text-gray-200 font-cinzel ml-9">
+                      <div className="space-y-4 text-base text-gray-200 font-cinzel ml-9">
                         {/* GSC - Green Sustainable Community */}
                         <div className="mx-[-32px]">
                           <div className="flex items-center gap-3 mb-4"></div>
-                          <div className="space-y-3 text-sm text-gray-200 font-cinzel ml-9">
+                          <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
                             {/* GSC - Green Sustainable Community */}
                             <div>
                               <div className="flex items-center gap-3 mb-4">
                                 <svg className="w-6 h-6 text-[#D4AF37]" fill="currentColor" viewBox="0 0 20 20">
                                   <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75 2.906A3.005 3.005 0 0119 15v3H1v-3a3 3 0 013.75-2.906z" />
                                 </svg>
-                                <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
+                                <h3 className="text-xl md:text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
                                   GSC - Green Sustainable Community
                                 </h3>
                               </div>
-                              <div className="space-y-3 text-sm text-gray-200 font-cinzel ml-9">
+                              <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
                                 <p className="text-white">
                                   <span className="font-semibold">Role:</span> Human Resource Member |{" "}
                                   <span className="font-semibold">Date:</span> August 24th 2024 – May 1st 2025
@@ -1028,7 +1200,31 @@ export default function LumberaHavenPage() {
                                     </svg>
                                     Certificate
                                   </a>
+                                  <span className="inline-block w-8"></span>
+                                  <a
+                                    href="https://www.facebook.com/GreenSustainableCommunity"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 text-[#D4AF37] hover:text-[#F4BF37] transition-colors duration-300 font-semibold"
+                                  >
+                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                    </svg>
+                                    Fanpage
+                                  </a>
                                 </p>
+                                <div className="mt-4 mb-4">
+                                  <div className="relative w-full border-4 border-[#8B7355] rounded-lg overflow-hidden shadow-xl">
+                                    <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
+                                    <Image
+                                      src="/images/certidicate-gsc.png"
+                                      alt="GSC Certificate"
+                                      width={800}
+                                      height={600}
+                                      className="w-full h-auto"
+                                    />
+                                  </div>
+                                </div>
                                 <p className="leading-relaxed text-justify">
                                   As an HR member for the Green Sustainable Construction (GSC) project, I recruited 20+
                                   members and managed social media to promote eco-friendly building initiatives. By
@@ -1044,11 +1240,11 @@ export default function LumberaHavenPage() {
                                 <svg className="w-6 h-6 text-[#D4AF37]" fill="currentColor" viewBox="0 0 20 20">
                                   <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-1 .07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
                                 </svg>
-                                <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
+                                <h3 className="text-xl md:text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
                                   MUN - Model of United Nation
                                 </h3>
                               </div>
-                              <div className="space-y-3 text-sm text-gray-200 font-cinzel ml-9">
+                              <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
                                 <p className="text-white">
                                   <span className="font-semibold">Role:</span> Delegate |{" "}
                                   <span className="font-semibold">Date:</span> August 2022 – June 2023
@@ -1072,6 +1268,28 @@ export default function LumberaHavenPage() {
                                   </a>
                                 </p>
                                 {/* </CHANGE> */}
+                                <div className="mt-4 mb-4 space-y-4">
+                                  <div className="relative w-full border-4 border-[#8B7355] rounded-lg overflow-hidden shadow-xl">
+                                    <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
+                                    <Image
+                                      src="/images/certidicate-lsts-1.png"
+                                      alt="MUN Certificate 1"
+                                      width={800}
+                                      height={600}
+                                      className="w-full h-auto"
+                                    />
+                                  </div>
+                                  <div className="relative w-full border-4 border-[#8B7355] rounded-lg overflow-hidden shadow-xl">
+                                    <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
+                                    <Image
+                                      src="/images/certidicate-lsts-2.png"
+                                      alt="MUN Certificate 2"
+                                      width={800}
+                                      height={600}
+                                      className="w-full h-auto"
+                                    />
+                                  </div>
+                                </div>
                                 <p className="leading-relaxed text-justify">
                                   {
                                     'My role as Indonesia\'s delegate in a Model UN on "Carbon Markets and Climate Equity" sparked my interest in global environmental policy. I debated whether emissions trading schemes effectively reduce CO2 or create global imbalances. This taught me to analyze sustainability through an international lens, understanding how national policies shape our collective climate future.\n'
@@ -1086,7 +1304,7 @@ export default function LumberaHavenPage() {
 
                     {/* Closing Philosophy */}
                     <div className="pb-8 border-t border-white/20 pt-8 mt-8">
-                      <p className="text-sm leading-relaxed text-gray-200 font-cinzel italic">
+                      <p className="text-base leading-relaxed text-gray-200 font-cinzel italic text-justify">
                         "The Garden breathes hidden every creation. It is here that my environmental activism takes
                         root: transforming awareness into action, and research into restoration."
                       </p>
@@ -1098,10 +1316,10 @@ export default function LumberaHavenPage() {
                   <div className="max-w-2xl space-y-8">
                     {/* Statistics Section */}
                     <div>
-                      <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] mb-4 uppercase tracking-wide">
+                      <h3 className="text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] mb-4 uppercase tracking-wide">
                         Statistics
                       </h3>
-                      <div className="space-y-4 text-sm text-gray-200 font-cinzel">
+                      <div className="space-y-4 text-base text-gray-200 font-cinzel">
                         <div>
                           <p className="font-semibold text-white mb-1">GPA:</p>
                           <p className="ml-4">9.3/10 (Grade 9), 9.4/10 (Grade 10), 9.6/10 (Grade 11)</p>
@@ -1117,25 +1335,33 @@ export default function LumberaHavenPage() {
 
                     {/* Honor & Award Section */}
                     <div>
-                      <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] mb-4 uppercase tracking-wide">
+                      <h3 className="text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] mb-4 uppercase tracking-wide">
                         Honor & Award
                       </h3>
-                      <div className="space-y-4 text-sm text-gray-200 font-cinzel">
+                      <div className="space-y-4 text-base text-gray-200 font-cinzel">
                         <div>
                           <ul className="ml-4 space-y-1 list-disc list-inside">
                             <li>
                               <a
-                                href="https://drive.google.com/file/d/1A67PWXj7gsJHNFwA0J4Ie1qTXmrsjuCK/view?usp=sharing"
+                                href="https://drive.google.com/file/d/1S18b9w9P3ka1aMn6ZVtM_sNxiL4-8nsD/view"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-[#D4AF37] hover:text-[#F4BF37] transition-colors duration-300 underline decoration-[#D4AF37]/50 hover:decoration-[#F4BF37]"
                               >
                                 Gold Medal – Japan Design, Idea & Invention Expo - JDIE (2025)
+                              </a>{"    "}
+                              <a
+                                href="https://drive.google.com/file/d/1A67PWXj7gsJHNFwA0J4Ie1qTXmrsjuCK/view"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[#D4AF37] hover:text-[#F4BF37] transition-colors duration-300 underline decoration-[#D4AF37]/50 hover:decoration-[#F4BF37]"
+                              >
+                                JDIE Medal
                               </a>
                             </li>
                             <li>
                               <a
-                                href="https://drive.google.com/file/__DYWRTj5Vv0UA4otE5tVcJC2OtWCDNH/view?usp=drive_link"
+                                href="https://drive.google.com/file/d/1__DYWRTj5Vv0UA4otE5tVcJC2OtWCDNH/view"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-[#D4AF37] hover:text-[#F4BF37] transition-colors duration-300 underline decoration-[#D4AF37]/50 hover:decoration-[#F4BF37]"
@@ -1176,10 +1402,26 @@ export default function LumberaHavenPage() {
                             </li>
                             {/* </CHANGE> */}
                             <li>
-                              2-time Second Prize – Materials Science, Ho Chi Minh City-level Science and Engineering
-                              Fair (2023–2025)
+                              <a
+                                href="https://drive.google.com/file/d/1RNnsDdIFmj_DXLDGLQoEvw173bx0IS1k/view"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[#D4AF37] hover:text-[#F4BF37] transition-colors duration-300 underline decoration-[#D4AF37]/50 hover:decoration-[#F4BF37]"
+                              >
+                                2-time Second Prize – Materials Science, Ho Chi Minh City-level Science and Engineering
+                                Fair (2023–2025)
+                              </a>
                             </li>
-                            <li>Consolation Prize – City-level Youth Innovation Competition (2023)</li>
+                            <li>
+                              <a
+                                href="https://drive.google.com/file/d/13LPqudsG3cJ66SqWXd5TCNk0eb-6ViMO/view"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[#D4AF37] hover:text-[#F4BF37] transition-colors duration-300 underline decoration-[#D4AF37]/50 hover:decoration-[#F4BF37]"
+                              >
+                                Consolation Prize – City-level Youth Innovation Competition (2023)
+                              </a>
+                            </li>
                             <li>
                               <a
                                 href="https://drive.google.com/file/d/1ABakE7ekNIZQVTy3zqm53F5u7JNJ56fl/view?usp=drive_link"
@@ -1213,16 +1455,86 @@ export default function LumberaHavenPage() {
                             {/* </CHANGE> */}
                           </ul>
                         </div>
+
+                        {/* Certificate Carousel */}
+                        <div className="mt-8">
+                          <div className="relative">
+                            {/* Carousel Container */}
+                            <div className="overflow-hidden">
+                              <div
+                                className="flex transition-transform duration-500 ease-in-out"
+                                style={{
+                                  transform: `translateX(-${certCarouselIndex * 22.22}%)`,
+                                }}
+                                onTouchStart={(e) => setCertTouchStart(e.targetTouches[0].clientX)}
+                                onTouchMove={(e) => setCertTouchEnd(e.targetTouches[0].clientX)}
+                                onTouchEnd={handleCertSwipe}
+                                onMouseDown={(e) => setCertTouchStart(e.clientX)}
+                                onMouseMove={(e) => {
+                                  if (e.buttons === 1) {
+                                    setCertTouchEnd(e.clientX)
+                                  }
+                                }}
+                                onMouseUp={handleCertSwipe}
+                                onMouseLeave={() => {
+                                  if (certTouchStart !== 0) {
+                                    handleCertSwipe()
+                                  }
+                                }}
+                              >
+                                {certImages.map((imageSrc, index) => (
+                                  <div
+                                    key={index}
+                                    className="min-w-[22.22%] px-2 cursor-pointer group"
+                                    onClick={() => openCertLightbox(index)}
+                                  >
+                                    <div className="relative aspect-[3/4] rounded-lg overflow-hidden border-4 border-[#8B7355] shadow-2xl hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-300 hover:scale-105">
+                                      <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
+                                      <Image
+                                        src={imageSrc}
+                                        alt={`Certificate ${index + 2}`}
+                                        fill
+                                        className="object-cover"
+                                      />
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Navigation Arrows - Always visible for infinite scroll */}
+                            <button
+                              onClick={prevCertSlide}
+                              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                              aria-label="Previous certificates"
+                            >
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                              </svg>
+                            </button>
+
+                            <button
+                              onClick={nextCertSlide}
+                              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                              aria-label="Next certificates"
+                            >
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </button>
+
+                          </div>
+                        </div>
                       </div>
                     </div>
 
                     {/* Core Values Section */}
                     <div>
-                      <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] mb-4 uppercase tracking-wide">
+                      <h3 className="text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] mb-4 uppercase tracking-wide">
                         Interest
                       </h3>
-                      <div className="space-y-4 text-sm text-gray-200 font-cinzel">
-                        <p className="leading-relaxed">
+                      <div className="space-y-4 text-base text-gray-200 font-cinzel">
+                        <p className="leading-relaxed text-justify">
                           Chemical Engineering Major | Curious about the eclectic fusion of material science and quantum
                           mechanics in environmental designs.
                         </p>
@@ -1244,10 +1556,10 @@ export default function LumberaHavenPage() {
 
                     {/* Back Story Section */}
                     <div>
-                      <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] mb-4 uppercase tracking-wide">
+                      <h3 className="text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] mb-4 uppercase tracking-wide">
                         Back Story
                       </h3>
-                      <div className="space-y-4 text-sm leading-relaxed text-gray-200 font-cinzel">
+                      <div className="space-y-4 text-base leading-relaxed text-gray-200 font-cinzel">
                         <p className="text-justify">
                           I grew up hearing a familiar chorus: humanity as the villain, nature as the passive victim in
                           need of rescue. This narrative shifted through three formative experiences.
@@ -1286,14 +1598,14 @@ export default function LumberaHavenPage() {
 
                     {/* Unique Voice Section */}
                     <div className="pb-8">
-                      <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] mb-4 uppercase tracking-wide">
+                      <h3 className="text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] mb-4 uppercase tracking-wide">
                         MY Voice
                       </h3>
-                      <div className="space-y-3 text-sm text-gray-200 font-cinzel">
-                        <p className="italic border-l-4 border-[#D4AF37] pl-4">
+                      <div className="space-y-3 text-base text-gray-200 font-cinzel">
+                        <p className="italic border-l-4 border-[#D4AF37] pl-4 text-justify">
                           &quot;Saving communities is protecting the environment&quot;
                         </p>
-                        <p className="font-semibold text-white">
+                        <p className="font-semibold text-white text-justify">
                           My journey taught me that Humanity's thriving is not the poison but rather the antidote for a
                           sick planet.
                         </p>
@@ -1306,7 +1618,7 @@ export default function LumberaHavenPage() {
                   <div className="max-w-2xl space-y-8">
                     {/* Punch Line Quote */}
                     <div className="my-8 border-l-4 border-[#D4AF37] pl-6 py-2">
-                      <p className="text-base italic text-gray-100 font-cinzel leading-relaxed">
+                      <p className="text-base md:text-lg italic text-gray-100 font-cinzel leading-relaxed text-justify">
                         "The Chapter House reminds me that the truest measure of innovation is not what I build alone,
                         but what I build for and with others."
                       </p>
@@ -1320,11 +1632,11 @@ export default function LumberaHavenPage() {
                           <path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z" />
                           <path d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z" />
                         </svg>
-                        <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
+                        <h3 className="text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
                           "From Clay to Care" – A Business Charity
                         </h3>
                       </div>
-                      <div className="space-y-3 text-sm text-gray-200 font-cinzel ml-9">
+                      <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
                         <p className="text-white">
                           <span className="font-semibold">Role:</span> Founder |{" "}
                           <span className="font-semibold">Date:</span> January 24th 2024 – Present
@@ -1342,11 +1654,14 @@ export default function LumberaHavenPage() {
                             Fanpage
                           </a>
                         </p>
-                        <p className="leading-relaxed">
-                          This charity is a consistent activity under my cultural business project "Di Sản Thu Nhỏ –
-                          Điêu Khắc Hội An", where I championed Vietnamese heritage by promoting traditional crafts
+                        <p className="leading-relaxed text-justify">
+                          This charity is a consistent activity under my cultural business project "Di San Thu Nho –
+                          Dieu Khac Hoi An", where I championed Vietnamese heritage by promoting traditional crafts
                           through sales and cultural talks, and collaborated with Thanh Hà Pottery Village to provide
-                          hands-on workshops for +80 visitors with local artisans. The project's commercial success
+                          hands-on workshops for +80 visitors with local artisans.
+                        </p>
+                        <p className="leading-relaxed text-justify">
+                          The project's commercial success
                           comes from VND 16 million in revenue from sculpture sales during Tet holiday The profits were
                           strategically allocated to fund a charity kitchen, which consistently provided 250 free
                           vegetarian meals to vulnerable communities 2-3 times per month, creating a sustainable cycle
@@ -1400,11 +1715,11 @@ export default function LumberaHavenPage() {
                         <svg className="w-6 h-6 text-[#D4AF37]" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z" />
                         </svg>
-                        <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
+                        <h3 className="text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
                           Koki Organization – Season 3
                         </h3>
                       </div>
-                      <div className="space-y-3 text-sm text-gray-200 font-cinzel ml-9">
+                      <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
                         <p className="text-white">
                           <span className="font-semibold">Role:</span> Head of Event |{" "}
                           <span className="font-semibold">Date:</span> May 27th – August 5th 2025
@@ -1421,6 +1736,7 @@ export default function LumberaHavenPage() {
                             </svg>
                             Fanpage
                           </a>
+                          <span className="inline-block w-8"></span>
                           <a
                             href="https://www.facebook.com/groups/1422063472268348"
                             target="_blank"
@@ -1432,6 +1748,7 @@ export default function LumberaHavenPage() {
                             </svg>
                             Community
                           </a>
+                          <span className="inline-block w-8"></span>
                           <a
                             href="https://drive.google.com/drive/folders/1P24YF6BIfoUwXM8ehLe7CQ0n0gMJSS_1?usp=sharing"
                             target="_blank"
@@ -1448,7 +1765,7 @@ export default function LumberaHavenPage() {
                             Certificate
                           </a>
                         </p>
-                        <p className="leading-relaxed">
+                        <p className="leading-relaxed text-justify">
                           I directed the charity concert "A Yearbook of Pop," leading a team of 40+ staff to deliver a
                           successful event for 650+ attendees in Ho Chi Minh City. We raised VND 135 million in
                           donations by overseeing all operations: from social media strategy, which grew our fanpage to
@@ -1654,11 +1971,11 @@ export default function LumberaHavenPage() {
                         <svg className="w-6 h-6 text-[#D4AF37]" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
                         </svg>
-                        <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
+                        <h3 className="text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
                           Youth Engineering Society! (YES!)
                         </h3>
                       </div>
-                      <div className="space-y-3 text-sm text-gray-200 font-cinzel ml-9">
+                      <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
                         <p className="text-white">
                           <span className="font-semibold">Role:</span> President |{" "}
                           <span className="font-semibold">Date:</span> December 28th 2024 – Present
@@ -1676,146 +1993,277 @@ export default function LumberaHavenPage() {
                             Fanpage
                           </a>
                         </p>
-                        <p className="leading-relaxed">
-                          As President of YES, I led a 12-member executive team to expand the club's reach into both
-                          research and community initiatives, growing our fanpage to 2.1K followers with 200+ active
-                          viewers.
-                        </p>
-                        <p className="leading-relaxed">
-                          {
-                            "I directed the AirTrack Project, deploying an IoT-based weather monitoring system to support farmers in Đồng Tháp. This involved organizing two trips (4-day and 9-day) to collect data and test eco-friendly water filters using corncob composite, water hyacinth, zeolite, and silica aerogel. \n"
-                          }
-                        </p>
-                        <p className="leading-relaxed">
-                          {
-                            "We hosted two workshops on pollution and sustainable practices for 100+ farmers, achieving tangible results: 26 households report positive feedback on water cleanliness and 85% community approval for the model. \nOur efforts were recognized at the Đồng Tháp STEM Forum, where I represented YES for promoting student-led environmental innovation.\n"
-                          }
-                        </p>
-                        <p className="leading-relaxed">
-                          Furthermore, I founded "June Sunshine," a STEM-based volunteering initiative, leading 10
-                          volunteers to teach science and soft skills to underprivileged students and organize
-                          intergenerational storytelling sessions at nursing homes.
-                        </p>
-
-                        <div className="mt-8 grid grid-cols-3 gap-6">
-                          {/* Dong Thap Trip Gallery */}
-                          <div>
-                            <h4 className="text-base font-cinzel font-semibold text-[#D4AF37] mb-3 uppercase tracking-wide">
-                              Dong Thap Trip
-                            </h4>
-                            <div className="relative w-full h-[240px] cursor-pointer group">
-                              {/* Stacked photos effect */}
-                              {dongThapGalleryImages.slice(0, 4).map((imageSrc, index) => (
-                                <div
-                                  key={index}
-                                  onClick={() => openDongThapLightbox(index)}
-                                  className="absolute inset-0 transition-all duration-500 ease-out group-hover:translate-y-0"
-                                  style={{
-                                    transform: `translateY(${index * 8}px) translateX(${index * 5}px) rotate(${index * 2 - 3}deg)`,
-                                    zIndex: dongThapGalleryImages.length - index,
-                                  }}
-                                >
-                                  <div className="relative w-full h-full border-4 border-[#8B7355] rounded-lg overflow-hidden shadow-2xl hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-shadow duration-300">
-                                    <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
-                                    <Image
-                                      src={imageSrc || "/placeholder.svg"}
-                                      alt={`Dong Thap trip photo ${index + 1}`}
-                                      fill
-                                      className="object-cover"
-                                    />
-                                    {index === 0 && (
-                                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 px-2.5 py-1 rounded-full">
-                                          <p className="text-xs font-cinzel font-semibold text-black">
-                                            View {dongThapGalleryImages.length} photos
-                                          </p>
-                                        </div>
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
-                              ))}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
+                          <div className="md:col-span-1 flex items-center">
+                            <p className="leading-relaxed text-justify">
+                              As President of YES, I led a 12-member executive team to expand the club's reach into both
+                              research and community initiatives, growing our fanpage to 1.9K followers with 200+ active
+                              viewers.
+                            </p>
+                          </div>
+                          <div className="md:col-span-2 grid grid-cols-2 gap-4 h-full">
+                            <div className="relative w-full h-full">
+                              <Image
+                                src="/images/logo-yes.png"
+                                alt="YES Logo"
+                                width={800}
+                                height={600}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            <div className="relative w-full h-full">
+                              <Image
+                                src="/images/banner-yes.png"
+                                alt="YES Banner"
+                                width={800}
+                                height={600}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
                           </div>
+                        </div>
+                        <p className="leading-relaxed text-justify mt-4">
+                          {
+                            "I directed the AirTrack Project, deploying an IoT-based weather monitoring system to support farmers in Dong Thap. This involved organizing two trips (4-day and 9-day) to collect data and test eco-friendly water filters using corncob composite, water hyacinth, zeolite, and silica aerogel. \n"
+                          }
+                        </p>
+                        <p className="leading-relaxed text-justify">
+                          {
+                            "We hosted two workshops on pollution and sustainable practices for 100+ farmers, achieving tangible results: 20 households report positive feedback on water cleanliness and 80% community approval for the media.\n"
+                          }
+                        </p>
+                        <p className="leading-relaxed text-justify">
+                          {
+                            "Our efforts were recognized at the Dong Thap STEM Forum, where I represented YES for promoting student-led environmental innovation.\n"
+                          }
+                        </p>
 
-                          {/* Tutoring Gallery */}
-                          <div>
-                            <h4 className="text-base font-cinzel font-semibold text-[#D4AF37] mb-3 uppercase tracking-wide">
-                              Tutoring
-                            </h4>
-                            <div className="relative w-full h-[240px] cursor-pointer group">
-                              {/* Stacked photos effect */}
-                              {tutoringGalleryImages.slice(0, 4).map((imageSrc, index) => (
-                                <div
-                                  key={index}
-                                  onClick={() => openTutoringLightbox(index)}
-                                  className="absolute inset-0 transition-all duration-500 ease-out group-hover:translate-y-0"
-                                  style={{
-                                    transform: `translateY(${index * 8}px) translateX(${index * 5}px) rotate(${index * 2 - 3}deg)`,
-                                    zIndex: tutoringGalleryImages.length - index,
-                                  }}
-                                >
-                                  <div className="relative w-full h-full border-4 border-[#8B7355] rounded-lg overflow-hidden shadow-2xl hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-shadow duration-300">
-                                    <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
-                                    <Image
-                                      src={imageSrc || "/placeholder.svg"}
-                                      alt={`Tutoring photo ${index + 1}`}
-                                      fill
-                                      className="object-cover"
-                                    />
-                                    {index === 0 && (
-                                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 px-2.5 py-1 rounded-full">
-                                          <p className="text-xs font-cinzel font-semibold text-black">
-                                            View {tutoringGalleryImages.length} photos
-                                          </p>
-                                        </div>
-                                      </div>
-                                    )}
+                        {/* DONG THAP TRIP Gallery */}
+                        <div className="mt-8">
+                          <h4 className="text-base font-cinzel font-semibold text-[#D4AF37] mb-4 text-center uppercase tracking-wide">
+                            DONG THAP TRIP
+                          </h4>
+                          <div className="relative mt-4">
+                            <div className="overflow-hidden">
+                              <div
+                                className="flex transition-transform duration-300 ease-out"
+                                style={{
+                                  transform: `translate3d(-${dongThapCarouselIndex * 33.33}%, 0, 0)`,
+                                  willChange: 'transform',
+                                  backfaceVisibility: 'hidden',
+                                }}
+                              >
+                                {dongThapGalleryImages.map((imageSrc, index) => (
+                                  <div
+                                    key={index}
+                                    className="min-w-[33.33%] px-2 cursor-pointer group"
+                                    onClick={() => openDongThapLightbox(index)}
+                                  >
+                                    <div className="relative aspect-[3/4] rounded-lg overflow-hidden border-4 border-[#8B7355] shadow-2xl hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-300 hover:scale-105">
+                                      <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
+                                      <Image
+                                        src={imageSrc}
+                                        alt={`Dong Thap trip photo ${index + 1}`}
+                                        fill
+                                        className="object-cover"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                              ))}
+                                ))}
+                              </div>
                             </div>
+                            <button
+                              onClick={prevDongThapSlide}
+                              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                              aria-label="Previous"
+                            >
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                              </svg>
+                            </button>
+                            <button
+                              onClick={nextDongThapSlide}
+                              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                              aria-label="Next"
+                            >
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </button>
                           </div>
+                        </div>
 
-                          {/* Nursing Home Gallery */}
-                          <div>
-                            <h4 className="text-base font-cinzel font-semibold text-[#D4AF37] mb-3 uppercase tracking-wide">
-                              Nursing Home
-                            </h4>
-                            <div className="relative w-full h-[240px] cursor-pointer group">
-                              {/* Stacked photos effect */}
-                              {nursingHomeGalleryImages.slice(0, 4).map((imageSrc, index) => (
-                                <div
-                                  key={index}
-                                  onClick={() => openNursingHomeLightbox(index)}
-                                  className="absolute inset-0 transition-all duration-500 ease-out group-hover:translate-y-0"
-                                  style={{
-                                    transform: `translateY(${index * 8}px) translateX(${index * 5}px) rotate(${index * 2 - 3}deg)`,
-                                    zIndex: nursingHomeGalleryImages.length - index,
-                                  }}
-                                >
-                                  <div className="relative w-full h-full border-4 border-[#8B7355] rounded-lg overflow-hidden shadow-2xl hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-shadow duration-300">
-                                    <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
-                                    <Image
-                                      src={imageSrc || "/placeholder.svg"}
-                                      alt={`Nursing home photo ${index + 1}`}
-                                      fill
-                                      className="object-cover"
-                                    />
-                                    {index === 0 && (
-                                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 px-2.5 py-1 rounded-full">
-                                          <p className="text-xs font-cinzel font-semibold text-black">
-                                            View {nursingHomeGalleryImages.length} photos
-                                          </p>
-                                        </div>
-                                      </div>
-                                    )}
+                        {/* VOLUNTEERING & WORKSHOPS Gallery */}
+                        <div className="mt-12">
+                          <h4 className="text-base font-cinzel font-semibold text-[#D4AF37] mb-4 text-center uppercase tracking-wide">
+                            VOLUNTEERING &amp; WORKSHOPS
+                          </h4>
+                          <div className="relative mt-4">
+                            <div className="overflow-hidden">
+                              <div
+                                className="flex transition-transform duration-300 ease-out"
+                                style={{
+                                  transform: `translate3d(-${workshopsCarouselIndex * 33.33}%, 0, 0)`,
+                                  willChange: 'transform',
+                                  backfaceVisibility: 'hidden',
+                                }}
+                              >
+                                {workshopsGalleryImages.map((imageSrc, index) => (
+                                  <div
+                                    key={index}
+                                    className="min-w-[33.33%] px-2 cursor-pointer group"
+                                    onClick={() => openDongThapLightbox(index)}
+                                  >
+                                    <div className="relative aspect-[3/4] rounded-lg overflow-hidden border-4 border-[#8B7355] shadow-2xl hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-300 hover:scale-105">
+                                      <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
+                                      <Image
+                                        src={imageSrc}
+                                        alt={`Workshop photo ${index + 1}`}
+                                        fill
+                                        className="object-cover"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                              ))}
+                                ))}
+                              </div>
                             </div>
+                            <button
+                              onClick={prevWorkshopsSlide}
+                              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                              aria-label="Previous"
+                            >
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                              </svg>
+                            </button>
+                            <button
+                              onClick={nextWorkshopsSlide}
+                              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                              aria-label="Next"
+                            >
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* June Sunshine Text */}
+                        <div className="mt-8">
+                          <p className="leading-relaxed text-justify text-base text-gray-200 font-cinzel">
+                            Furthermore, I founded "June Sunshine," a STEM-based volunteering initiative, leading 10
+                            volunteers to teach science and soft skills to underprivileged students and organize
+                            intergenerational storytelling sessions at nursing homes.
+                          </p>
+                        </div>
+
+                        {/* STEM TUTORING Gallery */}
+                        <div className="mt-12">
+                          <h4 className="text-base font-cinzel font-semibold text-[#D4AF37] mb-4 text-center uppercase tracking-wide">
+                            STEM TUTORING
+                          </h4>
+                          <div className="relative mt-4">
+                            <div className="overflow-hidden">
+                              <div
+                                className="flex transition-transform duration-300 ease-out"
+                                style={{
+                                  transform: `translate3d(-${tutoringCarouselIndex * 33.33}%, 0, 0)`,
+                                  willChange: 'transform',
+                                  backfaceVisibility: 'hidden',
+                                }}
+                              >
+                                {tutoringGalleryImages.map((imageSrc, index) => (
+                                  <div
+                                    key={index}
+                                    className="min-w-[33.33%] px-2 cursor-pointer group"
+                                    onClick={() => openTutoringLightbox(index)}
+                                  >
+                                    <div className="relative aspect-[3/4] rounded-lg overflow-hidden border-4 border-[#8B7355] shadow-2xl hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-300 hover:scale-105">
+                                      <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
+                                      <Image
+                                        src={imageSrc}
+                                        alt={`Tutoring photo ${index + 1}`}
+                                        fill
+                                        className="object-cover"
+                                      />
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                            <button
+                              onClick={prevTutoringSlide}
+                              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                              aria-label="Previous"
+                            >
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                              </svg>
+                            </button>
+                            <button
+                              onClick={nextTutoringSlide}
+                              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                              aria-label="Next"
+                            >
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* NURSING HOME Gallery */}
+                        <div className="mt-12">
+                          <h4 className="text-base font-cinzel font-semibold text-[#D4AF37] mb-4 text-center uppercase tracking-wide">
+                            NURSING HOME
+                          </h4>
+                          <div className="relative mt-4">
+                            <div className="overflow-hidden">
+                              <div
+                                className="flex transition-transform duration-300 ease-out"
+                                style={{
+                                  transform: `translate3d(-${nursingHomeCarouselIndex * 33.33}%, 0, 0)`,
+                                  willChange: 'transform',
+                                  backfaceVisibility: 'hidden',
+                                }}
+                              >
+                                {nursingHomeGalleryImages.map((imageSrc, index) => (
+                                  <div
+                                    key={index}
+                                    className="min-w-[33.33%] px-2 cursor-pointer group"
+                                    onClick={() => openNursingHomeLightbox(index)}
+                                  >
+                                    <div className="relative aspect-[3/4] rounded-lg overflow-hidden border-4 border-[#8B7355] shadow-2xl hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-300 hover:scale-105">
+                                      <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
+                                      <Image
+                                        src={imageSrc}
+                                        alt={`Nursing home photo ${index + 1}`}
+                                        fill
+                                        className="object-cover"
+                                      />
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                            <button
+                              onClick={prevNursingHomeSlide}
+                              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                              aria-label="Previous"
+                            >
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                              </svg>
+                            </button>
+                            <button
+                              onClick={nextNursingHomeSlide}
+                              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                              aria-label="Next"
+                            >
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -1823,15 +2271,15 @@ export default function LumberaHavenPage() {
 
                     {/* Aeromonitor */}
                     <div>
-                      <div className="flex items-center gap-3 mb-4">
+                      <div className="flex items-center gap-3 mt-12 mb-4">
                         <svg className="w-6 h-6 text-[#D4AF37]" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
                         </svg>
-                        <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
+                        <h3 className="text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
                           Aeromonitor
                         </h3>
                       </div>
-                      <div className="space-y-3 text-sm text-gray-200 font-cinzel ml-9">
+                      <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
                         <p className="text-white">
                           <span className="font-semibold">Role:</span> Co-Creator |{" "}
                           <span className="font-semibold">Date:</span> Nov 2024 - Present
@@ -1878,9 +2326,8 @@ export default function LumberaHavenPage() {
 
                     {/* Closing Philosophy */}
                     <div className="pb-8 border-t border-white/20 pt-8 mt-8">
-                      <p className="text-sm leading-relaxed text-gray-200 font-cinzel italic">
-                        "The stories we tell here have defined my identity greatly. They led back to the Sanctum where I
-                        clarified my deepest and most personal aspects."
+                      <p className="text-base leading-relaxed text-gray-200 font-cinzel italic text-justify">
+                        To me, true service creates a resonance that extends far beyond a single act. After all, this conviction has guided my community engagement—that knowledge and innovation are meaningless unless they enrich others' goods through service.
                       </p>
                     </div>
                     {/* </CHANGE> */}
@@ -1891,7 +2338,7 @@ export default function LumberaHavenPage() {
                   <div className="max-w-2xl space-y-8">
                     {/* Opening Quote */}
                     <div className="my-8 border-l-4 border-[#D4AF37] pl-6 py-2">
-                      <p className="text-base italic text-gray-100 font-cinzel leading-relaxed">
+                      <p className="text-base italic text-gray-100 font-cinzel leading-relaxed text-justify">
                         "Sculpture reminds me that culture is not inherited. It is continuously rebuilt, every time I
                         choose to remember, recreate, and retell."
                       </p>
@@ -1918,11 +2365,11 @@ export default function LumberaHavenPage() {
                           <path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z" />
                           <path d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z" />
                         </svg>
-                        <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
+                        <h3 className="text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
                           The cultural business project &quot;Di San Thu Nho – Dieu Khac Hoi An.&quot;
                         </h3>
                       </div>
-                      <div className="space-y-3 text-sm text-gray-200 font-cinzel ml-9">
+                      <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
                         <p className="text-white">
                           <span className="font-semibold">Role:</span> Founder |{" "}
                           <span className="font-semibold">Date:</span> Jun 2024 - Present
@@ -1952,7 +2399,7 @@ export default function LumberaHavenPage() {
                             <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
                             <Image
                               src="/images/design-mode/Business%20Avatar.png"
-                              alt="Di Sản Thu Nhỏ – Điêu Khắc Hội An Business Avatar"
+                              alt="Di San Thu Nho – Dieu Khac Hoi An Business Avatar"
                               fill
                               className="object-cover"
                             />
@@ -2031,23 +2478,26 @@ export default function LumberaHavenPage() {
                             clipRule="evenodd"
                           />
                         </svg>
-                        <h3 className="text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
+                        <h3 className="text-xl md:text-2xl font-cinzel font-semibold text-[#D4AF37] uppercase tracking-wide">
                           The Art Portfolio "The Signature of Clay"
                         </h3>
                       </div>
-                      <div className="space-y-3 text-sm text-gray-200 font-cinzel ml-9">
+                      <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
                         <p className="leading-relaxed text-justify">
                           My Art Portfolio is a collection of works that capture the soul of my surroundings, where
                           clay, light, and texture fuse into my culture. It reflects not perfection but presence: how I
-                          see, feel, and connect with the world around me.This portfolio drew inspiration from my
+                          see, feel, and connect with the world around me.
+                        </p>
+                        <p className="leading-relaxed text-justify">
+                          This portfolio drew inspiration from my
                           cultural business project. Its subject, clay figures, is the precursor of the ceramic
                           sculpture sold in my uncle's stall. I want to understand not only the root of myself but also
-                          the aesthetic origins of every cultural footprints I saw in the memory of my homeland, Hội An.
+                          the aesthetic origins of every cultural footprints I saw in the memory of my homeland, Hoi An.
                         </p>
 
                         <div className="mt-6 relative">
                           <div
-                            className="relative w-full aspect-[4/3] rounded-lg overflow-hidden border-4 border-[#8B7355] shadow-2xl cursor-pointer"
+                            className="relative w-full aspect-[16/9] rounded-lg overflow-hidden border-4 border-[#8B7355] shadow-2xl cursor-pointer"
                             onClick={() => openSignatureOfClayLightbox(signatureOfClayIndex)}
                           >
                             <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
@@ -2130,7 +2580,7 @@ export default function LumberaHavenPage() {
 
                     {/* Closing Philosophy */}
                     <div className="pb-8 border-t border-white/20 pt-8 mt-8">
-                      <p className="text-sm leading-relaxed text-gray-200 font-cinzel italic">
+                      <p className="text-base leading-relaxed text-gray-200 font-cinzel italic text-justify">
                         "The stories we tell here have defined my identity greatly. They led back to the Sanctum where I
                         clarified my deepest and most personal aspects."
                       </p>
@@ -2745,6 +3195,194 @@ export default function LumberaHavenPage() {
                   onClick={() => setNursingHomeLightboxIndex(index)}
                   className={`relative w-20 h-20 rounded-md overflow-hidden border-2 transition-all duration-300 ${
                     index === nursingHomeLightboxIndex
+                      ? "border-[#D4AF37] ring-2 ring-[#D4AF37] scale-110"
+                      : "border-white/30 hover:border-white/60"
+                  }`}
+                >
+                  <Image
+                    src={imageSrc || "/placeholder.svg"}
+                    alt={`Thumbnail ${index + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+      {/* </CHANGE> */}
+      {kokiLightboxOpen && (
+        <div
+          className="fixed inset-0 z-[110] bg-black/95 backdrop-blur-sm flex items-center justify-center p-8"
+          onClick={() => setKokiLightboxOpen(false)}
+        >
+          <div className="relative w-full max-w-5xl h-[85vh]" onClick={(e) => e.stopPropagation()}>
+            {/* Main image */}
+            <div className="relative w-full h-full rounded-lg overflow-hidden border-4 border-[#8B7355] shadow-2xl">
+              <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
+              <Image
+                src={kokiGalleryImages[kokiLightboxIndex] || "/placeholder.svg"}
+                alt={`Koki organization photo ${kokiLightboxIndex + 1}`}
+                fill
+                className="object-contain"
+              />
+
+              {/* Navigation buttons */}
+              <button
+                onClick={prevKokiLightboxImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+                aria-label="Previous image"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={nextKokiLightboxImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+                aria-label="Next image"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* Dot indicators */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                {kokiGalleryImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setKokiLightboxIndex(index)}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                      index === kokiLightboxIndex ? "bg-[#D4AF37] w-8" : "bg-white/60 hover:bg-white/90"
+                    }`}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
+
+              {/* Image counter */}
+              <div className="absolute top-4 right-4 z-20 bg-black/70 px-3 py-1.5 rounded-full">
+                <span className="text-sm text-white font-cinzel font-semibold">
+                  {kokiLightboxIndex + 1} / {kokiGalleryImages.length}
+                </span>
+              </div>
+            </div>
+
+            {/* Close button */}
+            <button
+              onClick={() => setKokiLightboxOpen(false)}
+              className="absolute -top-12 right-0 w-10 h-10 flex items-center justify-center text-white hover:text-[#D4AF37] transition-colors duration-300"
+              aria-label="Close lightbox"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Thumbnail strip */}
+            <div className="absolute -bottom-24 left-0 right-0 flex justify-center gap-2 px-4">
+              {kokiGalleryImages.map((imageSrc, index) => (
+                <button
+                  key={index}
+                  onClick={() => setKokiLightboxIndex(index)}
+                  className={`relative w-20 h-20 rounded-md overflow-hidden border-2 transition-all duration-300 ${
+                    index === kokiLightboxIndex
+                      ? "border-[#D4AF37] ring-2 ring-[#D4AF37] scale-110"
+                      : "border-white/30 hover:border-white/60"
+                  }`}
+                >
+                  <Image
+                    src={imageSrc || "/placeholder.svg"}
+                    alt={`Thumbnail ${index + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+      {/* </CHANGE> */}
+      {certLightboxOpen && (
+        <div
+          className="fixed inset-0 z-[110] bg-black/95 backdrop-blur-sm flex items-center justify-center p-8"
+          onClick={() => setCertLightboxOpen(false)}
+        >
+          <div className="relative w-full max-w-5xl h-[85vh]" onClick={(e) => e.stopPropagation()}>
+            {/* Main image */}
+            <div className="relative w-full h-full rounded-lg overflow-hidden border-4 border-[#8B7355] shadow-2xl">
+              <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
+              <Image
+                src={certImages[certLightboxIndex] || "/placeholder.svg"}
+                alt={`Certificate ${certLightboxIndex + 2}`}
+                fill
+                className="object-contain"
+              />
+
+              {/* Navigation buttons */}
+              <button
+                onClick={prevCertLightboxImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+                aria-label="Previous image"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={nextCertLightboxImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+                aria-label="Next image"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* Dot indicators */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                {certImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCertLightboxIndex(index)}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                      index === certLightboxIndex ? "bg-[#D4AF37] w-8" : "bg-white/60 hover:bg-white/90"
+                    }`}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
+
+              {/* Image counter */}
+              <div className="absolute top-4 right-4 z-20 bg-black/70 px-3 py-1.5 rounded-full">
+                <span className="text-sm text-white font-cinzel font-semibold">
+                  {certLightboxIndex + 1} / {certImages.length}
+                </span>
+              </div>
+            </div>
+
+            {/* Close button */}
+            <button
+              onClick={() => setCertLightboxOpen(false)}
+              className="absolute -top-12 right-0 w-10 h-10 flex items-center justify-center text-white hover:text-[#D4AF37] transition-colors duration-300"
+              aria-label="Close lightbox"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Thumbnail strip */}
+            <div className="absolute -bottom-24 left-0 right-0 flex justify-center gap-2 px-4">
+              {certImages.map((imageSrc, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCertLightboxIndex(index)}
+                  className={`relative w-20 h-20 rounded-md overflow-hidden border-2 transition-all duration-300 ${
+                    index === certLightboxIndex
                       ? "border-[#D4AF37] ring-2 ring-[#D4AF37] scale-110"
                       : "border-white/30 hover:border-white/60"
                   }`}
