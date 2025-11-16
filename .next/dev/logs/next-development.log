@@ -1,23 +1,7 @@
-[00:00:01.888] Server  LOG     
-[00:00:01.889] Server  LOG        We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
-[00:00:01.891] Server  LOG        The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
-
-[00:00:01.892] Server  LOG        	- include was updated to add '.next\dev/types/**/*.ts'
-[00:00:01.893] Server  LOG        	- include was updated to add '.next\dev/types/**/*.ts'
-[00:00:01.894] Server  LOG     
-[00:00:01.895] Server  LOG        The following mandatory changes were made to your tsconfig.json:
-
-[00:00:01.896] Server  LOG        	- jsx was set to react-jsx (next.js uses the React automatic runtime)
-[00:00:01.897] Server  LOG     
-[00:00:02.636] Server  LOG      ✓ Ready in 2.1s
-[00:00:20.105] Server  LOG      ○ Compiling / ...
-[00:00:26.786] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:27.227] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:27.227] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:27.227] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1763207092782}
-[00:02:07.255] Server  LOG      ✓ Compiled in 578ms
-[00:02:13.053] Server  LOG      ✓ Compiled in 382ms
-[00:02:15.440] Server  LOG      ✓ Compiled in 402ms
-[00:02:18.100] Server  LOG      ✓ Compiled in 295ms
-[00:02:20.587] Server  LOG      ✓ Compiled in 281ms
-[00:02:23.436] Server  LOG      ✓ Compiled in 299ms
+[00:00:01.987] Server  LOG      ✓ Ready in 1313ms
+[00:00:06.545] Server  LOG      ○ Compiling / ...
+[00:00:08.849] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:09.095] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:09.095] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:00:09.095] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.5.0","sv":"0.1.3","ts":1763302673169}
+[00:16:48.326] Server  LOG      ✓ Compiled in 689ms

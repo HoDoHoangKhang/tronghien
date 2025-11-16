@@ -384,7 +384,7 @@ export default function LumberaHavenPage() {
               <span className="block text-4xl my-2">LUMINARA HAVEN</span>
             </h1>
             <p className="leading-relaxed text-gray-200 mb-3 text-base font-light font-[family-name:var(--font-utm-times)]">
-              Hi! I am Nguyễn Đình Trọng Hiến and this platform is the journey of my growth, exploration, and hope.
+              Hi! Test I am Nguyễn Đình Trọng Hiến and this platform is the journey of my growth, exploration, and hope.
             </p>
             <p className="leading-relaxed text-gray-200 text-base font-light font-[family-name:var(--font-utm-times)]">
               I believe that my entire story could be retold perfectly as an &quot;imagination&quot; castle titled
