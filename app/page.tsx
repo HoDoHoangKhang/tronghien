@@ -1163,12 +1163,12 @@ export default function LumberaHavenPage() {
                     </div>
 
                     {/* Organizations */}
-                    <div className="mx-[-39px]">
-                      <div className="space-y-4 text-base text-gray-200 font-cinzel ml-9">
+                    <div className="overflow-hidden">
+                      <div className="space-y-4 text-base text-gray-200 font-cinzel">
                         {/* GSC - Green Sustainable Community */}
-                        <div className="mx-[-32px]">
+                        <div>
                           <div className="flex items-center gap-3 mb-4"></div>
-                          <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
+                          <div className="space-y-3 text-base text-gray-200 font-cinzel">
                             {/* GSC - Green Sustainable Community */}
                             <div>
                               <div className="flex items-center gap-3 mb-4">
@@ -1179,7 +1179,7 @@ export default function LumberaHavenPage() {
                                   GSC - Green Sustainable Community
                                 </h3>
                               </div>
-                              <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
+                              <div className="space-y-3 text-base text-gray-200 font-cinzel">
                                 <p className="text-white">
                                   <span className="font-semibold">Role:</span> Human Resource Member |{" "}
                                   <span className="font-semibold">Date:</span> August 24th 2024 – May 1st 2025
@@ -1214,7 +1214,7 @@ export default function LumberaHavenPage() {
                                   </a>
                                 </p>
                                 <div className="mt-4 mb-4">
-                                  <div className="relative w-full border-4 border-[#8B7355] rounded-lg overflow-hidden shadow-xl">
+                                  <div className="relative w-full max-w-full border-4 border-[#8B7355] rounded-lg overflow-hidden shadow-xl">
                                     <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
                                     <Image
                                       src="/images/certidicate-gsc.png"
@@ -1244,7 +1244,7 @@ export default function LumberaHavenPage() {
                                   MUN - Model of United Nation
                                 </h3>
                               </div>
-                              <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
+                              <div className="space-y-3 text-base text-gray-200 font-cinzel">
                                 <p className="text-white">
                                   <span className="font-semibold">Role:</span> Delegate |{" "}
                                   <span className="font-semibold">Date:</span> August 2022 – June 2023
@@ -1269,7 +1269,7 @@ export default function LumberaHavenPage() {
                                 </p>
                                 {/* </CHANGE> */}
                                 <div className="mt-4 mb-4 space-y-4">
-                                  <div className="relative w-full border-4 border-[#8B7355] rounded-lg overflow-hidden shadow-xl">
+                                  <div className="relative w-full max-w-full border-4 border-[#8B7355] rounded-lg overflow-hidden shadow-xl">
                                     <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
                                     <Image
                                       src="/images/certidicate-lsts-1.png"
@@ -1279,7 +1279,7 @@ export default function LumberaHavenPage() {
                                       className="w-full h-auto"
                                     />
                                   </div>
-                                  <div className="relative w-full border-4 border-[#8B7355] rounded-lg overflow-hidden shadow-xl">
+                                  <div className="relative w-full max-w-full border-4 border-[#8B7355] rounded-lg overflow-hidden shadow-xl">
                                     <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
                                     <Image
                                       src="/images/certidicate-lsts-2.png"

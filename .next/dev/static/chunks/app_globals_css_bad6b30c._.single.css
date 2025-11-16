@@ -1370,6 +1370,10 @@
     max-width: calc(100% - 2rem);
   }
 
+  .max-w-full {
+    max-width: 100%;
+  }
+
   .max-w-max {
     max-width: max-content;
   }
