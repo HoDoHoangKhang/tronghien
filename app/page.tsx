@@ -17,7 +17,7 @@ const chambers = [
     galleryImages: [
       "/images/design-mode/1(2).jpg",
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/A%CC%89nh%20bi%CC%80a%20cu%CC%89a%20The%20Sanctum-dMEy9bYkB4O14yh1qWP7Hk3rl4M2pF.jpg",
-      "/images/design-mode/sanc%20%281%29.png",
+      "/images/design-mode/sanc%2520%25281%2529.png",
     ],
     // </CHANGE>
   },
@@ -40,7 +40,7 @@ const chambers = [
     id: "garden",
     title: "The Garden of Eden",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/eden-WfyZ03blK4qFB6RLB7mJeDcaQ7YbIQ.png",
-    thumbnailImage: "/images/design-mode/3.jpg%201(1).png",
+    thumbnailImage: "/images/design-mode/3.jpg%25201(1).png",
     description: [
       "The Garden of Eden showcases my endeavors to restore the balance between humans' benefits and environmental health. In this space, creations born to solve one of the age-old problems, climate change, and innovation breathe with the rhythm of nature.Here, I am the Verdant Warden. More than just the garden's caretakers Adam and Eva, I strived to be the guardian of equilibrium, who studies not only how nature sustains us but how we sustain it in turn.",
     ],
@@ -53,7 +53,7 @@ const chambers = [
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-WX7I56PMlibpmhJrqdaqe08mV1iIu4.jpg",
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7-xkmg9U7PnLR019sy9OLP2Ynym9XD8K.jpg",
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-VNEKoqN3Tmm2l3jcXXiwUqLVhdK1lQ.jpg",
-      "/images/design-mode/eden%20%281%29.png",
+      "/images/design-mode/eden%2520%25281%2529.png",
     ],
     // </CHANGE>
   },
@@ -384,7 +384,7 @@ export default function LumberaHavenPage() {
               <span className="block text-4xl my-2">LUMINARA HAVEN</span>
             </h1>
             <p className="leading-relaxed text-gray-200 mb-3 text-base font-light font-[family-name:var(--font-utm-times)]">
-              Test Hi! I am Nguyễn Đình Trọng Hiến and this platform is the journey of my growth, exploration, and hope.
+              Hi! I am Nguyễn Đình Trọng Hiến and this platform is the journey of my growth, exploration, and hope.
             </p>
             <p className="leading-relaxed text-gray-200 text-base font-light font-[family-name:var(--font-utm-times)]">
               I believe that my entire story could be retold perfectly as an &quot;imagination&quot; castle titled
@@ -410,7 +410,7 @@ export default function LumberaHavenPage() {
             <div className="relative border-4 border-[#8B7355] rounded-sm shadow-2xl hover:shadow-[0_0_30px_rgba(212,175,55,0.6)]">
               <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-sm m-1"></div>
               <Image
-                src="/images/design-mode/sanc%20%281%29.png"
+                src="/images/design-mode/sanc%2520%25281%2529.png"
                 alt="The Sanctum - Angel Statue"
                 width={400}
                 height={600}
@@ -462,7 +462,7 @@ export default function LumberaHavenPage() {
             <div className="relative border-4 border-[#8B7355] rounded-sm shadow-2xl hover:shadow-[0_0_30px_rgba(212,175,55,0.6)]">
               <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-sm m-1"></div>
               <Image
-                src="/images/design-mode/eden%20%281%29.png"
+                src="/images/design-mode/eden%2520%25281%2529.png"
                 alt="The Garden of Eden"
                 width={400}
                 height={600}
@@ -2002,7 +2002,7 @@ export default function LumberaHavenPage() {
                             </div>
                             <div className="relative w-full aspect-square rounded-lg overflow-hidden border-2 border-[#8B7355] shadow-lg">
                               <Image
-                                src="/images/design-mode/5%20%281%29.jpg"
+                                src="/images/design-mode/5%2520%25281%2529.jpg"
                                 alt="Holding ceramic sculpture"
                                 fill
                                 className="object-cover"

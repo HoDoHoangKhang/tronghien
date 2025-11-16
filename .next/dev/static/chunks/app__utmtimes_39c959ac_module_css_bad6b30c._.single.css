@@ -1,0 +1,25 @@
+/* [project]/app/_utmtimes_39c959ac.module.css [app-client] (css) */
+@font-face {
+  font-family: _utmTimes;
+  src: url("../media/UTM_Times-s.p.01138273.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: _utmTimes Fallback;
+  src: local(Arial);
+  ascent-override: 114.2%;
+  descent-override: 23.88%;
+  line-gap-override: 0.0%;
+  size-adjust: 91.41%;
+}
+
+._utmtimes_39c959ac-module__cwZhzG__className {
+  font-family: _utmTimes, _utmTimes Fallback;
+}
+
+._utmtimes_39c959ac-module__cwZhzG__variable {
+  --font-utm-times: "_utmTimes", "_utmTimes Fallback";
+}
+
+/*# sourceMappingURL=app__utmtimes_39c959ac_module_css_bad6b30c._.single.css.map*/

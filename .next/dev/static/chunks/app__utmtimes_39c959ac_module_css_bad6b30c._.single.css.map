@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/_utmtimes_39c959ac.module.css"],"sourcesContent":["@font-face {\n    \n    font-family: '_utmTimes';\n    src: url('@vercel/turbopack-next/internal/font/local/font?{%22path%22:%22../public/fonts/UTM-Times.ttf%22,%22preload%22:true,%22has_size_adjust%22:true}') format('truetype');\n    font-display: swap;\n    \n}\n\n@font-face {\n    font-family: '_utmTimes Fallback';\n    src: local(\"Arial\");\n    ascent-override: 114.20%;\ndescent-override: 23.88%;\nline-gap-override: 0.00%;\nsize-adjust: 91.41%;\n\n}\n\n.className {\n    font-family: '_utmTimes', '_utmTimes Fallback';\n    \n}\n.variable {\n    --font-utm-times: '_utmTimes', '_utmTimes Fallback';\n}\n\n"],"names":[],"mappings":"AAAA;;;;;;AAQA;;;;;;;;;AAUA;;;;AAIA"}}]
+}
