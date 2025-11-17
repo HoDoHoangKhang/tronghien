@@ -1111,6 +1111,19 @@ export default function LumberaHavenPage() {
                             </svg>
                             Certificate
                           </a>
+                          <span className="inline-block w-8"></span>
+                          <a
+                            href="https://thietbixulynuocbinhduong.com/gioi-thieu-cong-ty/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-[#D4AF37] hover:text-[#F4BF37] transition-colors duration-300 font-semibold"
+                          >
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                              <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                            </svg>
+                            Website
+                          </a>
                         </p>
                         <p className="leading-relaxed text-justify">
                           I directly supported engineers in the installation and calibration of water treatment systems,
@@ -1662,7 +1675,7 @@ export default function LumberaHavenPage() {
                         </p>
                         <p className="leading-relaxed text-justify">
                           The project's commercial success
-                          comes from VND 16 million in revenue from sculpture sales during Tet holiday The profits were
+                          comes from VND 16 million in revenue from sculpture sales during Tet holiday. The profits were
                           strategically allocated to fund a charity kitchen, which consistently provided 250 free
                           vegetarian meals to vulnerable communities 2-3 times per month, creating a sustainable cycle
                           of cultural enterprise and social support.
@@ -1726,7 +1739,7 @@ export default function LumberaHavenPage() {
                         </p>
                         <p className="text-white">
                           <a
-                            href="https://www.facebook.com/youngengineerssociety.yes01"
+                            href="https://www.facebook.com/profile.php?id=100093297455996"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 text-[#D4AF37] hover:text-[#F4BF37] transition-colors duration-300 font-semibold"
@@ -1770,8 +1783,7 @@ export default function LumberaHavenPage() {
                           successful event for 650+ attendees in Ho Chi Minh City. We raised VND 135 million in
                           donations by overseeing all operations: from social media strategy, which grew our fanpage to
                           2.6K followers, to hosting cross-department meetings. These efforts provided essential support
-                          such as food, scholarships, and Braille materials for 40 visually impaired children at Bừng
-                          Sáng Shelter, alongside fundraising activities like the "Art in the Park" workshop to enhance
+                          such as food, scholarships, and Braille materials for 40 visually impaired children at <span className="font-family-han">Bung Sang</span> Shelter, alongside fundraising activities like the "Art in the Park" workshop to enhance
                           public awareness.
                         </p>
 
