@@ -109,6 +109,8 @@ export default function LumberaHavenPage() {
   const [tutoringLightboxIndex, setTutoringLightboxIndex] = useState(0)
   const [nursingHomeLightboxOpen, setNursingHomeLightboxOpen] = useState(false)
   const [nursingHomeLightboxIndex, setNursingHomeLightboxIndex] = useState(0)
+  const [workshopsLightboxOpen, setWorkshopsLightboxOpen] = useState(false)
+  const [workshopsLightboxIndex, setWorkshopsLightboxIndex] = useState(0)
   // </CHANGE>
   // </CHANGE>
 
@@ -473,6 +475,21 @@ export default function LumberaHavenPage() {
   const openNursingHomeLightbox = (index: number) => {
     setNursingHomeLightboxIndex(index)
     setNursingHomeLightboxOpen(true)
+  }
+
+  const nextWorkshopsImage = () => {
+    setWorkshopsLightboxIndex((prev) => (prev + 1) % workshopsGalleryImages.length)
+  }
+
+  const prevWorkshopsImage = () => {
+    setWorkshopsLightboxIndex(
+      (prev) => (prev - 1 + workshopsGalleryImages.length) % workshopsGalleryImages.length,
+    )
+  }
+
+  const openWorkshopsLightbox = (index: number) => {
+    setWorkshopsLightboxIndex(index)
+    setWorkshopsLightboxOpen(true)
   }
   // </CHANGE>
   // </CHANGE>
@@ -2124,7 +2141,7 @@ export default function LumberaHavenPage() {
                                   <div
                                     key={index}
                                     className="min-w-[33.33%] px-2 cursor-pointer group"
-                                    onClick={() => openDongThapLightbox(index)}
+                                    onClick={() => openWorkshopsLightbox(index)}
                                   >
                                     <div className="relative aspect-[3/4] rounded-lg overflow-hidden border-4 border-[#8B7355] shadow-2xl hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-300 hover:scale-105">
                                       <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
@@ -3207,6 +3224,100 @@ export default function LumberaHavenPage() {
                   onClick={() => setNursingHomeLightboxIndex(index)}
                   className={`relative w-20 h-20 rounded-md overflow-hidden border-2 transition-all duration-300 ${
                     index === nursingHomeLightboxIndex
+                      ? "border-[#D4AF37] ring-2 ring-[#D4AF37] scale-110"
+                      : "border-white/30 hover:border-white/60"
+                  }`}
+                >
+                  <Image
+                    src={imageSrc || "/placeholder.svg"}
+                    alt={`Thumbnail ${index + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+      {/* </CHANGE> */}
+      {workshopsLightboxOpen && (
+        <div
+          className="fixed inset-0 z-[110] bg-black/95 backdrop-blur-sm flex items-center justify-center p-8"
+          onClick={() => setWorkshopsLightboxOpen(false)}
+        >
+          <div className="relative w-full max-w-5xl h-[85vh]" onClick={(e) => e.stopPropagation()}>
+            {/* Main image */}
+            <div className="relative w-full h-full rounded-lg overflow-hidden border-4 border-[#8B7355] shadow-2xl">
+              <div className="absolute inset-0 border-2 border-[#D4AF37] rounded-md m-1 pointer-events-none z-10"></div>
+              <Image
+                src={workshopsGalleryImages[workshopsLightboxIndex] || "/placeholder.svg"}
+                alt={`Workshop photo ${workshopsLightboxIndex + 1}`}
+                fill
+                className="object-contain"
+              />
+
+              {/* Navigation buttons */}
+              <button
+                onClick={prevWorkshopsImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+                aria-label="Previous image"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={nextWorkshopsImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+                aria-label="Next image"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* Dot indicators */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                {workshopsGalleryImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setWorkshopsLightboxIndex(index)}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                      index === workshopsLightboxIndex ? "bg-[#D4AF37] w-8" : "bg-white/60 hover:bg-white/90"
+                    }`}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
+
+              {/* Image counter */}
+              <div className="absolute top-4 right-4 z-20 bg-black/70 px-3 py-1.5 rounded-full">
+                <span className="text-sm text-white font-cinzel font-semibold">
+                  {workshopsLightboxIndex + 1} / {workshopsGalleryImages.length}
+                </span>
+              </div>
+            </div>
+
+            {/* Close button */}
+            <button
+              onClick={() => setWorkshopsLightboxOpen(false)}
+              className="absolute -top-12 right-0 w-10 h-10 flex items-center justify-center text-white hover:text-[#D4AF37] transition-colors duration-300"
+              aria-label="Close lightbox"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Thumbnail strip */}
+            <div className="absolute -bottom-24 left-0 right-0 flex justify-center gap-2 px-4">
+              {workshopsGalleryImages.map((imageSrc, index) => (
+                <button
+                  key={index}
+                  onClick={() => setWorkshopsLightboxIndex(index)}
+                  className={`relative w-20 h-20 rounded-md overflow-hidden border-2 transition-all duration-300 ${
+                    index === workshopsLightboxIndex
                       ? "border-[#D4AF37] ring-2 ring-[#D4AF37] scale-110"
                       : "border-white/30 hover:border-white/60"
                   }`}
