@@ -137,6 +137,9 @@ export default function LumberaHavenPage() {
     "/images/cert-6.png",
     "/images/cert-7.png",
     "/images/cert-8.png",
+    "/images/cert-9.png",
+    "/images/cert-10.png",
+    "/images/cert-11.png",
   ]
 
   // With 7 images and showing 4.5, we can scroll from 0 to 3 (showing images 0-6)
@@ -1048,7 +1051,7 @@ export default function LumberaHavenPage() {
                         </p>
                         <p className="text-white">
                           <a
-                            href="https://drive.google.com/drive/folders/1O_f5YvNLBLW1hPSyZfW6BqDli-pktnGR?usp=sharing"
+                            href="https://drive.google.com/drive/folders/1UMHS9UkkUuO587Apv9sxa6ua9YWLXbQn?usp=sharing"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 text-[#D4AF37] hover:text-[#F4BF37] transition-colors duration-300 font-semibold"
@@ -1114,7 +1117,7 @@ export default function LumberaHavenPage() {
                         </p>
                         <p className="text-white">
                           <a
-                            href="https://drive.google.com/drive/folders/1jBS6c5Zk1xIqBJx0WAKEYKKil42jbvi-?usp=sharing"
+                            href="https://drive.google.com/drive/folders/1sMJk4q6r6zbQUKE1MfZQCkzBLA5IkpoM"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 text-[#D4AF37] hover:text-[#F4BF37] transition-colors duration-300 font-semibold"
@@ -2315,7 +2318,7 @@ export default function LumberaHavenPage() {
                         </p>
                         <p className="text-white">
                           <a
-                            href="#"
+                            href="https://drive.google.com/drive/folders/1xBKTkQ8IPjx8FC6ZQJc2I80-5ZmUoMeZ"
                             className="inline-flex items-center gap-2 text-[#D4AF37] hover:text-[#F4BF37] transition-colors duration-300 font-semibold"
                           >
                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -2405,7 +2408,7 @@ export default function LumberaHavenPage() {
                         </p>
                         <p className="text-white">
                           <a
-                            href="#"
+                            href="https://www.facebook.com/profile.php?id=100077772774308 "
                             className="inline-flex items-center gap-2 text-[#D4AF37] hover:text-[#F4BF37] transition-colors duration-300 font-semibold"
                           >
                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
