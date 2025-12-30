@@ -1672,7 +1672,7 @@ export default function LumberaHavenPage() {
                       <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
                         <p className="text-white">
                           <span className="font-semibold">Role:</span> Founder |{" "}
-                          <span className="font-semibold">Date:</span> January 24th 2024 – Present
+                          <span className="font-semibold">Date:</span> June 2024 - Dec 2025
                         </p>
                         <p className="text-white">
                           <a
@@ -2404,7 +2404,7 @@ export default function LumberaHavenPage() {
                       <div className="space-y-3 text-base text-gray-200 font-cinzel ml-9">
                         <p className="text-white">
                           <span className="font-semibold">Role:</span> Founder |{" "}
-                          <span className="font-semibold">Date:</span> Jun 2024 - Present
+                          <span className="font-semibold">Date:</span> Jun 2024 - Dec 2025
                         </p>
                         <p className="text-white">
                           <a
